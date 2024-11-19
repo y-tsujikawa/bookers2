@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+
     <script src="https://kit.fontawesome.com/a513d0b493.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -61,7 +61,15 @@
         </div>
       </nav>
     </header>
-    <%= yield %>
+    <main>
+      <% if notice %>
+        <p id="notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p id="alert"><%= alert %></p>
+      <% end %>
+      <%= yield %>
+    </main>
     <footer>
       <div class="container mt-5">
         <div class="row">
