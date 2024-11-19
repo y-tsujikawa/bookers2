@@ -4,6 +4,18 @@ class UsersController < ApplicationController
     @books = @user.books
   end
 
+  def index
+    @user = current_user
+    @users = User.all
+    @book = Book.new
+  end
+
   def edit
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :profile_image)
   end
 end
