@@ -23,37 +23,53 @@
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
                 <li>
-                  <svg class="svg-inline--fa fa-house" area-hidden="true" focusable="false" data-prefix="fas" data-icon="house" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg></svg>
-                  <%= link_to " Home ", user_path(current_user.id), class: 'nav-link text-light' %>
+                  <%= link_to user_path(current_user.id), class: 'nav-link text-light' do  %>
+                    <i class="fa-solid fa-house"></i>
+                     Home
+                  <% end %>
                 </li>
                 <li>
-                  <svg class="svg-inline--fa fa-users" area-hidden="true" focusable="false" data-prefix="fas" data-icon="users" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg></svg>
-                  <%= link_to " Users ", user_registration_path, class: 'nav-link text-light' %>
+                  <%= link_to user_registration_path, class: 'nav-link text-light' do  %>
+                    <i class="fa-solid fa-users"></i>
+                     Users
+                  <% end %>
                 </li>
                 <li>
-                  <svg class="svg-inline--fa fa-book-open" area-hidden="true" focusable="false" data-prefix="fas" data-icon="book-open" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg></svg>
-                  <%= link_to " Books ", books_path, class: 'nav-link text-light' %>
+                  <%= link_to books_path, class: 'nav-link text-light' do  %>
+                    <i class="fa-solid fa-book-open"></i>
+                     Books
+                  <% end %>
                 </li>
                 <li>
-                  <svg class="svg-inline--fa fa-right-from-bracket" area-hidden="true" focusable="false" data-prefix="fas" data-icon="right-from-bracket" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg></svg>
-                  <%= link_to " Log out ", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do  %>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                     Log out
+                  <% end %>
                 </li>
               <% else %>
                 <li>
-                  <svg class="svg-inline--fa fa-house" area-hidden="true" focusable="false" data-prefix="fas" data-icon="house" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg></svg>
-                  <%= link_to " Home ", root_path, class: 'nav-link text-light' %>
+                  <%= link_to root_path, class: 'nav-link text-light' do  %>
+                    <i class="fa-solid fa-house"></i>
+                     Home
+                  <% end %>
                 </li>
                 <li>
-                  <svg class="svg-inline--fa fa-link" area-hidden="true" focusable="false" data-prefix="fas" data-icon="link" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg></svg>
-                  <%= link_to " About ", about_path, class: 'nav-link text-light' %>
+                  <%= link_to about_path, class: 'nav-link text-light' do  %>
+                    <i class="fa-solid fa-link"></i>
+                     About
+                  <% end %>
                 </li>
                 <li>
-                  <svg class="svg-inline--fa fa-user-plus" area-hidden="true" focusable="false" data-prefix="fas" data-icon="user-plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg></svg>
-                  <%= link_to " Sign up ", new_user_registration_path, class: 'nav-link text-light' %>
+                  <%= link_to new_user_registration_path, class: 'nav-link text-light' do  %>
+                    <i class="fa-solid fa-user-plus"></i>
+                     Sign up
+                  <% end %>
                 </li>
                 <li>
-                  <svg class="svg-inline--fa fa-right-to-bracket" area-hidden="true" focusable="false" data-prefix="fas" data-icon="right-to-bracket" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg></svg>
-                  <%= link_to " Log in ", new_user_session_path, class: 'nav-link text-light' %>
+                  <%= link_to new_user_session_path, class: 'nav-link text-light' do  %>
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Log in
+                  <% end %>
                 </li>
               <% end %>
             </ul>
