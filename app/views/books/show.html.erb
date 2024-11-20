@@ -53,6 +53,24 @@
               <% end %>
             </td>
             <td><%= @book.body %></td>
+            <td>
+              <% if @book.favorited_by?(current_user) %>
+                <p>
+                  <%= link_to book_favorite_path(@book), method: :delete, class: "d-flex align-items-center text-decoration-none text-danger" do %>
+                    <i class="fa-solid fa-heart me-1" aria-hidden="true"></i>
+                    <span><%= @book.favorites.count %></span>
+                  <% end %>
+                </p>
+              <% else %>
+                <p>
+                  <%= link_to book_favorite_path(@book), method: :post, class: "d-flex align-items-center text-decoration-none" do %>
+                    <i class="fa-solid fa-heart me-1" aria-hidden="true"></i>
+                    <span><%= @book.favorites.count %></span>
+                  <% end %>
+                </p>
+              <% end %>
+            </td>
+            <td>コメント数：<%= @book.book_comments.count %></td>
             <% if @book.user == current_user %>
               <td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success"%></td>
               <td><%= link_to "Destroy", book_path(@book), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか？" %></td>
@@ -60,6 +78,39 @@
           </tr>
         </tbody>
       </table>
+      <div>
+        <% @book.book_comments.each do |book_comment| %>
+          <div class="d-flex align-items-center mb-3">
+            <div class="me-3">
+              <%= link_to user_path(book_comment.user.id) do %>
+                <%= image_tag book_comment.user.get_profile_image(80, 80) %>
+                <br>
+                <%= book_comment.user.name %>
+              <% end %>
+            </div>
+            <div>
+              <p class="mb-0 d-inline-block"><%= book_comment.comment %></p>
+              <% if book_comment.user == current_user %>
+                <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), class: "btn btn-sm btn-danger ms-2", method: :delete %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div>
+        <% if @book_comment.errors.any? %>
+          <%= @book_comment.errors.count %> <%= @book_comment.errors.count == 1 ? "error" : "errors" %> prohibited this obj from being saved:
+          <ul>
+            <% @book_comment.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <%= form_with model: [@book, @book_comment], class: "w-100" do |f| %>
+          <%= f.text_area :comment, rows: '5', class: "form-control mb-3" %>
+          <%= f.submit "送信" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
